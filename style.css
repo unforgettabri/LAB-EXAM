@@ -11,7 +11,7 @@
     --contents-color: #111111;
     --muted-color: #555555;
 
-    --radius: 24px; /* Scaled up the corners to match the larger card size */
+    --radius: 24px;
     --font-body: "Inter", system-ui, -apple-system, sans-serif;
 
     /* --- UNIFIED CLASS-GLASS VARIABLE SYSTEM --- */
@@ -174,55 +174,28 @@ header {
     max-width: 500px;
 }
 
-/* --- MASSIVE CENTERED PROJECTS FLOATING CONTAINER --- */
-.projects-floating-wrapper {
-    position: absolute;
-    bottom: 6%;         /* Anchored dynamically over the bottom white canvas */
-    left: 50%;          
-    transform: translateX(-50%); 
-    width: 94vw;        /* Takes up almost the entire width of the screen */
-    max-width: 1800px;  /* Extremely wide ceiling to maximize empty screen space */
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    gap: 30px;
-}
-
-.section-heading {
-    font-family: "Bodoni Moda SC", serif;
-    font-size: 2.4rem;  /* Large commanding heading */
-    text-transform: uppercase;
-    color: var(--contents-color);
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-/* --- MASSIVE GRID --- */
+/* --- LARGE WORK GRID (BASE) --- */
 .work-grid {
     display: grid;
-    /* Cards will dynamically stretch to cover maximum column space */
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); 
-    gap: 30px;          
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 30px;
     width: 100%;
 }
 
-/* --- HUGE GLASS CARDS --- */
+/* --- HUGE GLASS CARDS (BASE) --- */
 .work-card {
     background: var(--card-bg) !important;
     border: var(--card-border) !important;
     border-radius: var(--radius);
     box-shadow: var(--card-shadow);
-    padding: 50px 45px; /* Huge internal padding for luxurious spacing */
+    padding: 50px 45px;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 290px;  /* Extra tall height so cards feel substantial and premium */
+    min-height: 290px;
     text-decoration: none;
 
     transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
@@ -233,12 +206,12 @@ header {
 .work-card:hover {
     background: var(--card-hover-bg) !important;
     box-shadow: var(--card-hover-shadow);
-    transform: translateY(-10px); /* Slightly more prominent floating hover */
+    transform: translateY(-10px);
 }
 
-/* --- INSIDE MASSIVE CARD TYPOGRAPHY --- */
+/* --- INSIDE CARD TYPOGRAPHY --- */
 .work-category {
-    font-size: 0.8rem;  
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--logo-color);
@@ -249,7 +222,7 @@ header {
 
 .work-title {
     font-family: "Bodoni Moda SC", serif;
-    font-size: 1.85rem; /* Highly readable large font */
+    font-size: 1.85rem;
     color: var(--contents-color);
     margin-bottom: 16px;
     font-weight: 700;
@@ -258,14 +231,14 @@ header {
 }
 
 .work-desc {
-    font-size: 1.05rem; /* Crisp body scale for instant scanning */
+    font-size: 1.05rem;
     color: var(--muted-color);
     line-height: 1.6;
     margin-bottom: 30px;
 }
 
 .work-arrow {
-    font-size: 1.8rem;  
+    font-size: 1.8rem;
     color: var(--logo-color);
     align-self: flex-start;
     transition: transform 0.3s ease;
@@ -275,14 +248,97 @@ header {
     transform: translateX(10px);
 }
 
-/* --- RESPONSIVE MEDIA QUERIES --- */
-@media (max-width: 991px) {
-    .headline-group {
-        width: 100%;
-        padding: 30px;
+.section-heading {
+    font-family: "Bodoni Moda SC", serif;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    color: var(--contents-color);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* ==========================================
+   --- NEW ADAPTIVE RESPONSIVE BEHAVIOR ---
+   ========================================== */
+
+/* 1. ULTRA-WIDE SCREENS ONLY (Cards float safely above the baseline) */
+@media (min-width: 1351px) {
+    .projects-floating-wrapper {
+        position: absolute;
+        bottom: 4%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 94vw;
+        max-width: 1800px;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
     }
 }
 
+/* 2. LAPTOPS, TABLETS & SHORTENED MODES (Flow naturally below the image to prevent overlap) */
+@media (max-width: 1350px) {
+    .hero {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero-content {
+        position: relative;
+        width: 100%;
+        padding: 40px 20px 0px 20px;
+        right: auto;
+        top: auto;
+        bottom: auto;
+    }
+
+    .headline-group {
+        width: 100%;
+        max-width: none;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    /* Instantly drops below the image */
+    .projects-floating-wrapper {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        padding: 60px 20px;
+        background-color: var(--bg-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .work-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 20px;
+    }
+
+    .work-card {
+        padding: 35px 30px;
+        min-height: auto;
+    }
+}
+
+/* 3. MOBILE MENU AND GENERAL MOBILE OPTIMIZATIONS */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -330,36 +386,5 @@ header {
         width: 100%;
         height: auto;
         z-index: 999;
-    }
-
-    /* Fallback layout on mobile screens to preserve readability */
-    .hero-content {
-        position: relative;
-        height: auto;
-        padding: 20px 20px 0 20px;
-        justify-content: center;
-        width: 100%;
-        right: 0;
-    }
-
-    .headline-group {
-        width: 100%;
-        max-width: none;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        backdrop-filter: none;
-        padding: 0;
-        margin-top: 0;
-    }
-
-    .projects-floating-wrapper {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: none;
-        width: 100%;
-        padding: 40px 20px;
-        background-color: var(--bg-color);
     }
 }

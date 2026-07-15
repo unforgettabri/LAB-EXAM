@@ -22,8 +22,8 @@
 
             <ul class="nav-links">
                 <li><a href="#about">About Me</a></li>
-                <li><a href="https://www.instagram.com/bricknbruise" target="_blank">Social Media</a></li>
-                <li><a href="mailto:brianna.bustamante@lorma.edu">Email Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#socials">Contact Me</a></li>
             </ul>
 
             <button class="hamburger" aria-label="Toggle menu">
@@ -36,8 +36,8 @@
         <div class="mobile-menu">
             <ul class="mobile-nav-links">
                 <li><a href="#about">About Me</a></li>
-                <li><a href="https://www.instagram.com/bricknbruise" target="_blank">Social Media</a></li>
-                <li><a href="mailto:brianna.bustamante@lorma.edu">Email Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#socials">Contact Me</a></li>
             </ul>
         </div>
     </header>
@@ -68,6 +68,14 @@
         <section id="about" class="about-section">
             <div id="about-card-container"></div>
         </section>
+
+        <section id="skills" class="skills-section">
+            <div id="skills-card-container"></div>
+        </section>
+
+        <section id="socials" class="socials-section">
+            <div id="socials-card-container"></div>
+        </section>
     </main>
 
     <script>
@@ -80,19 +88,15 @@
             mobileMenu.classList.toggle('active');
         });
 
-        /// Dynamic Portfolio Rendering function
         const renderPortfolio = (data) => {
-            // Find the "about" data entry
             const aboutData = data.find(item => item.type === 'about');
-            // Filter out the "about" object so only project cards go into your main work grid
             const projects = data.filter(item => item.type !== 'about');
 
-            // Render the About Card
             const aboutContainer = document.getElementById('about-card-container');
             if (aboutContainer && aboutData) {
                 aboutContainer.innerHTML = `
                     <div class="about-card">
-                        <span class="about-tag">Curriculum Vitae</span>
+                        <span class="about-tag">Profile</span>
                         <h2 class="about-title">About Me</h2>
                         <div class="accent-line center-accent"></div>
 
@@ -135,7 +139,57 @@
                 `;
             }
 
-            // Render Projects Grid
+            const skillsContainer = document.getElementById('skills-card-container');
+            if (skillsContainer && aboutData && aboutData.skills) {
+                skillsContainer.innerHTML = `
+                    <div class="about-card">
+                        <span class="about-tag">Proficiencies</span>
+                        <h2 class="about-title">Skills & Expertise</h2>
+                        <div class="accent-line center-accent"></div>
+                        
+                        <div class="skills-grid">
+                            ${aboutData.skills.map(skillGroup => `
+                                <div class="skills-col">
+                                    <h3>${skillGroup.category}</h3>
+                                    <div class="skills-pill-box">
+                                        ${skillGroup.items.map(skill => `<span class="skill-pill">${skill}</span>`).join('')}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            const socialsContainer = document.getElementById('socials-card-container');
+            if (socialsContainer && aboutData && aboutData.socials) {
+                socialsContainer.innerHTML = `
+                    <div class="about-card">
+                        <span class="about-tag">Get In Touch</span>
+                        <h2 class="about-title">Connect With Me</h2>
+                        <div class="accent-line center-accent"></div>
+                        
+                        <div class="contact-card-grid">
+                            <a href="${aboutData.socials.instagram}" class="contact-link-box" target="_blank" rel="noopener noreferrer">
+                                <div class="contact-box-content">
+                                    <span class="contact-label">Instagram</span>
+                                    <span class="contact-address">@bricknbruise</span>
+                                </div>
+                                <span class="contact-arrow">→</span>
+                            </a>
+                            
+                            <a href="mailto:${aboutData.socials.email}" class="contact-link-box">
+                                <div class="contact-box-content">
+                                    <span class="contact-label">Email Address</span>
+                                    <span class="contact-address">${aboutData.socials.email}</span>
+                                </div>
+                                <span class="contact-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+
             const container = document.getElementById('portfolio-grid');
             if (!container) return;
 
@@ -151,7 +205,6 @@
             `).join('');
         };
 
-        // Fetch portfolio data from separate data.json file
         fetch('data.json')
             .then(response => {
                 if (!response.ok) {

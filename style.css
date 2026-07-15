@@ -30,7 +30,8 @@ html {
 body {
     font-family: var(--font-body);
     background-color: var(--bg-color);
-    padding-top: 0; /* Changed from 78px to 0 so the image touches the absolute top */
+    padding-top: 0;
+    /* Changed from 78px to 0 so the image touches the absolute top */
 }
 
 a {
@@ -132,7 +133,7 @@ header {
     border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 24px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06),
-                0 4px 12px rgba(0, 0, 0, 0.02);
+        0 4px 12px rgba(0, 0, 0, 0.02);
 
     display: flex;
     flex-direction: column;
@@ -199,8 +200,8 @@ header {
     text-decoration: none;
 
     transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
-                background-color 0.3s ease,
-                box-shadow 0.35s ease;
+        background-color 0.3s ease,
+        box-shadow 0.35s ease;
 }
 
 .work-card:hover {
@@ -282,12 +283,13 @@ header {
         height: auto;
         display: flex;
         flex-direction: column;
-        align-items: center; 
+        align-items: center;
     }
 
     .hero-content {
         position: relative;
-        width: 94vw; /* Matches the width of the project wrapper below */
+        width: 94vw;
+        /* Matches the width of the project wrapper below */
         max-width: 1800px;
         padding: 40px 0 0 0;
         right: auto;
@@ -302,9 +304,11 @@ header {
     .headline-group {
         width: 100%;
         max-width: 100%;
-        margin-top: -60px; /* Pulls it slightly up over the image bottom margin */
+        margin-top: -60px;
+        /* Pulls it slightly up over the image bottom margin */
         padding: 45px 35px;
-        background: rgba(240, 241, 243, 0.88); /* Clean glass contrast */
+        background: rgba(240, 241, 243, 0.88);
+        /* Clean glass contrast */
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.7);
@@ -390,7 +394,7 @@ header {
         height: auto;
         z-index: 999;
     }
-    
+
     /* Slightly less margin-top overlap on extremely small screens */
     .headline-group {
         margin-top: -20px;
@@ -511,12 +515,39 @@ header {
     margin-bottom: 12px;
 }
 
+/* --- ABOUT COLUMNS INTERACTIVE HOVER --- */
+.about-col {
+    padding: 15px;
+    border-radius: 12px;
+    background: transparent;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        background-color 0.3s ease;
+}
+
+.about-col h3 {
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect per column group */
+.about-col:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    /* Soft, glassy inner glow */
+}
+
+.about-col:hover h3 {
+    color: var(--logo-color);
+    border-bottom-color: var(--contents-color);
+    /* Elegant color swap on hover */
+}
+
 /* Responsive adjusters for the about grid */
 @media (max-width: 1200px) {
     .about-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
     }
+
     .about-bio {
         font-size: 1.1rem;
         margin-bottom: 40px;
@@ -527,11 +558,147 @@ header {
     .about-card {
         padding: 40px 24px;
     }
+
     .about-grid {
         grid-template-columns: 1fr;
         gap: 25px;
     }
+
     .about-bio {
         font-size: 1rem;
+    }
+}
+
+/* --- SKILLS & SOCIALS SECTIONS --- */
+.skills-section,
+.socials-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 0 80px 0;
+    background-color: var(--bg-color);
+}
+
+#skills-card-container,
+#socials-card-container {
+    width: 94vw;
+    max-width: 1800px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Skills Column Layout Grid (Centrally Aligned 3 Columns) */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    width: 100%;
+}
+
+.skills-col h3 {
+    font-family: "Bodoni Moda SC", serif;
+    font-size: 1.3rem;
+    color: var(--contents-color);
+    border-bottom: 1.5px solid var(--logo-color);
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.skills-pill-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-pill {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--contents-color);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 8px 16px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: 100px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.skill-pill:hover {
+    background: rgba(184, 29, 51, 0.06);
+    border-color: rgba(184, 29, 51, 0.2);
+}
+
+/* Contact Grid (Half-width split rows) */
+.contact-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.contact-link-box {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.contact-link-box:hover {
+    background: rgba(255, 255, 255, 0.55);
+    border-color: rgba(184, 29, 51, 0.3);
+    transform: translateY(-4px);
+}
+
+.contact-box-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--logo-color);
+    font-weight: 700;
+}
+
+.contact-address {
+    font-family: "Bodoni Moda SC", serif;
+    font-size: 1.4rem;
+    color: var(--contents-color);
+    font-weight: 600;
+}
+
+.contact-arrow {
+    font-size: 1.6rem;
+    color: var(--logo-color);
+    transition: transform 0.3s ease;
+}
+
+.contact-link-box:hover .contact-arrow {
+    transform: translateX(8px);
+}
+
+@media (max-width: 1200px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-card-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .contact-address {
+        font-size: 1.1rem;
     }
 }

@@ -46,6 +46,15 @@
       "Feasibility of Alugbati (Basella Alba L.) Seeds as an Alternative Stamp Pad Ink (July 2023)",
       "Digital and Traditional Art: An Analysis of Teachers and Students Perception in Bangar, La Union (March 2024)",
       "Factors Affecting the Decline of Enrollment in the Arts Production Strand in DFLOMNHS (September 2024)"
-    ]
+    ],
+    "skills": [
+      { "category": "Creative & Design", "items": ["Traditional Art", "Visual Designer", "Website Design", "Junior Video Editor"] },
+      { "category": "Technical & Web", "items": ["HTML", "JavaScript", "Java", "Front-end Basics"] },
+      { "category": "Soft Skills", "items": ["Communication", "Adaptability", "Creative Thinking", "Teamwork"] }
+    ],
+    "socials": {
+      "instagram": "https://www.instagram.com/bricknbruise",
+      "email": "brianna.bustamante@lorma.edu"
+    }
   }
 ]

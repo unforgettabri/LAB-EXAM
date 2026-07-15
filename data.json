@@ -1,23 +1,23 @@
 [
   { 
     "id": 1, 
-    "title": "Project Alpha", 
-    "category": "Development", 
-    "description": "An exploration into minimal user interfaces and responsive web architectures.",
-    "link": "#" 
+    "title": "Dream Archive", 
+    "category": "UI/UX", 
+    "description": "A website that serves as a home for the dreams life didn't allow",
+    "link": "https://www.figma.com/proto/OZlmGWssxCeIiDCDjhr6kw/Dream-Archive--Draft-?node-id=96-12&starting-point-node-id=96%3A12&t=Ndga9oHfbxTQL0oS-1" 
   },
   { 
     "id": 2, 
-    "title": "Visual Identity", 
-    "category": "Design", 
-    "description": "Brand direction and assets built for modern digital platforms.",
-    "link": "#" 
+    "title": "bricknbruise official instagram", 
+    "category": "Traditional Art", 
+    "description": "A curated instagram page featuring my journey in the creative via the traditional art.",
+    "link": "https://www.instagram.com/bricknbruise" 
   },
   { 
     "id": 3, 
-    "title": "Hardware Archive", 
-    "category": "Photography", 
-    "description": "A curated photo series detailing legacy tech elements and cable layouts.",
+    "title": "More Coding Projects?", 
+    "category": "COMING SOON", 
+    "description": "Willing to learn more, stay tuned for more projects soon!",
     "link": "#" 
   }
 ]

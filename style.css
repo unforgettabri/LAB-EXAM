@@ -5,22 +5,32 @@
 }
 
 :root {
-    --bg-color: #ebebeb;
+    --bg-color: #f0f1f3;
     --logo-color: #B81D33;
-    --head-bg-color: rgba(235, 235, 235, 0.75);
-    --contents-color: #111;
+    --head-bg-color: rgba(240, 241, 243, 0.75);
+    --contents-color: #111111;
+    --muted-color: #555555;
 
-    --radius: 12px;
-
+    --radius: 24px; /* Scaled up the corners to match the larger card size */
     --font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+    /* --- UNIFIED CLASS-GLASS VARIABLE SYSTEM --- */
+    --card-bg: rgba(255, 255, 255, 0.45);
+    --card-hover-bg: rgba(255, 255, 255, 0.75);
+    --card-border: 1px solid rgba(255, 255, 255, 0.7);
+    --card-shadow: 0 20px 45px rgba(0, 0, 0, 0.04);
+    --card-hover-shadow: 0 35px 65px rgba(0, 0, 0, 0.08);
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-color);
 }
 
 body {
     font-family: var(--font-body);
     background-color: var(--bg-color);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    padding-top: 78px;
 }
 
 a {
@@ -29,22 +39,23 @@ a {
 }
 
 /* --- FIXED HEADER --- */
-header, .header {
+header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(235, 235, 235, 0.8);
+    background-color: var(--head-bg-color);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .nav-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 78px;
+    height: 60px;
     padding: 0 40px;
     width: 100%;
 }
@@ -52,145 +63,227 @@ header, .header {
 .logo {
     font-family: "Bodoni Moda SC", serif;
     color: var(--logo-color);
-    font-weight: 800;
+    font-weight: 700;
     font-style: normal;
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
-    letter-spacing: -1px;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
     gap: 30px;
-    font-size: 0.9rem;
-    font-weight: 600;
 }
 
-.hamburger, .mobile-menu {
+.nav-links a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted-color);
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--logo-color);
+}
+
+.hamburger,
+.mobile-menu {
     display: none;
 }
 
-/* --- THE HERO (EDITORIAL CANVAS WITH BG IMAGE) --- */
+/* --- HERO COVER PAGE ARCHITECTURE --- */
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh; /* Force section to take up full screen height */
-    padding: 120px 40px 60px 40px; /* Extra top padding to clear fixed header */
-    
-    /* Pulls your high-contrast hardware background image */
-    background-image: url('hero-bg.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    
-    display: flex;
-    align-items: flex-end; /* Sits content at the bottom where the white space is */
-    justify-content: center;
-}
-
-/* Container keeping content structured inside the image */
-.hero-overlay-content {
-    width: 100%;
-    max-width: 1300px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    z-index: 2;
 }
 
-/* --- NO CARDS / MAGAZINE TYPOGRAPHY --- */
+.hero-bg-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hero-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 4%;
+    width: 46%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
 .headline-group {
-    max-width: 800px;
-    background: transparent;
+    width: 100%;
+    height: auto;
+    max-height: 90%;
+    background: rgba(240, 241, 243, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    margin-top: -80px;
+    padding: clamp(30px, 4vw, 45px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06),
+                0 4px 12px rgba(0, 0, 0, 0.02);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hero-title {
     font-family: "Bodoni Moda SC", serif;
-    font-size: clamp(3rem, 7vw, 5.5rem); /* Dynamically scales title so it fits mobile */
-    color: var(--logo-color);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    color: #1a1a1a;
     text-transform: lowercase;
-    line-height: 0.9;
-    letter-spacing: -3px;
+    line-height: 0.95;
+    letter-spacing: -2px;
     font-weight: 900;
     margin-bottom: 15px;
 }
 
-.hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--contents-color);
-    font-weight: 500;
-    max-width: 500px;
-    line-height: 1.4;
-    letter-spacing: -0.5px;
+.accent-line {
+    width: 60px;
+    height: 3px;
+    background-color: var(--logo-color);
+    margin-bottom: 15px;
 }
 
-/* --- DYNAMIC COLUMN WORK GRID --- */
+.hero-subtitle {
+    font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+    color: var(--logo-color);
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    max-width: 520px;
+}
+
+.hero-description {
+    font-size: clamp(0.85rem, 0.9vw, 0.95rem);
+    color: var(--muted-color);
+    line-height: 1.5;
+    margin-bottom: 25px;
+    max-width: 500px;
+}
+
+/* --- MASSIVE CENTERED PROJECTS FLOATING CONTAINER --- */
+.projects-floating-wrapper {
+    position: absolute;
+    bottom: 6%;         /* Anchored dynamically over the bottom white canvas */
+    left: 50%;          
+    transform: translateX(-50%); 
+    width: 94vw;        /* Takes up almost the entire width of the screen */
+    max-width: 1800px;  /* Extremely wide ceiling to maximize empty screen space */
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 30px;
+}
+
+.section-heading {
+    font-family: "Bodoni Moda SC", serif;
+    font-size: 2.4rem;  /* Large commanding heading */
+    text-transform: uppercase;
+    color: var(--contents-color);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* --- MASSIVE GRID --- */
 .work-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
+    /* Cards will dynamically stretch to cover maximum column space */
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); 
+    gap: 30px;          
     width: 100%;
-    border-top: 2px solid var(--contents-color);
-    padding-top: 30px;
 }
 
+/* --- HUGE GLASS CARDS --- */
 .work-card {
-    background: transparent;
-    transition: opacity 0.2s ease;
+    background: var(--card-bg) !important;
+    border: var(--card-border) !important;
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    padding: 50px 45px; /* Huge internal padding for luxurious spacing */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-height: 290px;  /* Extra tall height so cards feel substantial and premium */
+    text-decoration: none;
+
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                background-color 0.3s ease,
+                box-shadow 0.35s ease;
 }
 
 .work-card:hover {
-    opacity: 0.75;
+    background: var(--card-hover-bg) !important;
+    box-shadow: var(--card-hover-shadow);
+    transform: translateY(-10px); /* Slightly more prominent floating hover */
 }
 
+/* --- INSIDE MASSIVE CARD TYPOGRAPHY --- */
 .work-category {
-    font-size: 0.75rem;
+    font-size: 0.8rem;  
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     color: var(--logo-color);
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     display: block;
 }
 
 .work-title {
     font-family: "Bodoni Moda SC", serif;
-    font-size: 1.6rem;
+    font-size: 1.85rem; /* Highly readable large font */
     color: var(--contents-color);
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     font-weight: 700;
     letter-spacing: -0.5px;
+    line-height: 1.2;
 }
 
 .work-desc {
-    font-size: 0.95rem;
-    color: #444;
-    line-height: 1.5;
-    margin-bottom: 15px;
+    font-size: 1.05rem; /* Crisp body scale for instant scanning */
+    color: var(--muted-color);
+    line-height: 1.6;
+    margin-bottom: 30px;
 }
 
 .work-arrow {
-    font-size: 1.5rem;
+    font-size: 1.8rem;  
     color: var(--logo-color);
     align-self: flex-start;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease;
 }
 
 .work-card:hover .work-arrow {
-    transform: translateX(8px);
+    transform: translateX(10px);
 }
 
-/* --- MEDIA QUERIES --- */
-@media (max-width: 768px) {
-    .nav-inner {
-        padding: 0 20px;
-        height: 60px;
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 991px) {
+    .headline-group {
+        width: 100%;
+        padding: 30px;
     }
+}
 
+@media (max-width: 768px) {
     .nav-links {
         display: none;
     }
@@ -217,7 +310,6 @@ header, .header {
     }
 
     .mobile-menu {
-        display: none; 
         background: var(--bg-color);
         padding: 10px 20px;
         border-top: 1px solid #ccc;
@@ -231,7 +323,7 @@ header, .header {
     }
 
     .mobile-menu.active {
-        display: block; 
+        display: block;
         position: fixed;
         top: 60px;
         left: 0;
@@ -240,17 +332,34 @@ header, .header {
         z-index: 999;
     }
 
-    /* Keep layout cohesive on smaller touch screens */
-    .hero {
-        padding: 100px 20px 40px 20px;
+    /* Fallback layout on mobile screens to preserve readability */
+    .hero-content {
+        position: relative;
+        height: auto;
+        padding: 20px 20px 0 20px;
+        justify-content: center;
+        width: 100%;
+        right: 0;
     }
 
-    .hero-title {
-        letter-spacing: -2px;
-        margin-bottom: 10px;
+    .headline-group {
+        width: 100%;
+        max-width: none;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        padding: 0;
+        margin-top: 0;
     }
-    
-    .work-grid {
-        gap: 30px;
+
+    .projects-floating-wrapper {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        padding: 40px 20px;
+        background-color: var(--bg-color);
     }
 }

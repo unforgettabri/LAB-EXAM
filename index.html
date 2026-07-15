@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <nav class="header">
+    <header>
         <div class="container nav-inner">
             <a href="#" class="logo">bricknbruise</a>
 
@@ -38,16 +38,30 @@
                 <li><a href="#">Email Me</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
     <main>
         <section class="hero">
-            <div class="hero-overlay-content">
+            <img src="hero-bg.png" alt="Creative Cables Background" class="hero-bg-img">
+
+            <div class="hero-content">
                 <div class="headline-group">
                     <h1 class="hero-title">creative portfolio</h1>
-                    <p class="hero-subtitle">A digital archive of developments, designs, and hardware concepts.</p>
+                    <div class="accent-line"></div>
+                    <p class="hero-subtitle">
+                        An expansive digital archive documenting the intersection of custom hardware interfaces,
+                        software engineering initiatives, and creative web layouts.
+                    </p>
+                    <p class="hero-description">
+                        Through experimental hardware setups and precise design execution, this space serves as an
+                        evolving showcase of classic aesthetics fused with contemporary development workflows. Explore
+                        the architectural layout of custom cables, modern visual assets, and tactile tech design.
+                    </p>
                 </div>
-                
+            </div>
+
+            <div class="projects-floating-wrapper">
+                <h2 class="section-heading">Projects</h2>
                 <div id="portfolio-grid" class="work-grid"></div>
             </div>
         </section>
@@ -63,12 +77,15 @@
             mobileMenu.classList.toggle('active');
         });
 
-        // Function to render the work items
+        /// Dynamic Portfolio Rendering function
         const renderPortfolio = (data) => {
             const container = document.getElementById('portfolio-grid');
+            if (!container) return;
+
+            /* --- CHANGE THIS SECTION IN YOUR HTML SCRIPT BLOCK --- */
             container.innerHTML = data.map(item => `
-                <a href="${item.link}" class="work-card">
-                    <div>
+                <a href="${item.link || '#'}" class="work-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-content">
                         <span class="work-category">${item.category}</span>
                         <h3 class="work-title">${item.title}</h3>
                         <p class="work-desc">${item.description}</p>
@@ -76,25 +93,24 @@
                     <span class="work-arrow">→</span>
                 </a>
             `).join('');
+
         };
 
-        // Fetch portfolio items directly from data.json
-        async function loadPortfolioData() {
-            try {
-                const response = await fetch('data.json');
+        // Fetch portfolio data from separate data.json file
+        fetch('data.json')
+            .then(response => {
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error('Could not fetch data.json');
                 }
-                const data = await response.json();
+                return response.json();
+            })
+            .then(data => {
                 renderPortfolio(data);
-            } catch (error) {
-                console.error("Could not fetch portfolio data: ", error);
-                document.getElementById('portfolio-grid').innerHTML = `<p style="color: var(--logo-color); padding: 20px 0;">Failed to load portfolio items.</p>`;
-            }
-        }
-
-        // Initialize on load
-        loadPortfolioData();
+            })
+            .catch(error => {
+                console.error('Error fetching data.json:', error);
+            });
     </script>
 </body>
+
 </html>

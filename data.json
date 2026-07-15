@@ -8,17 +8,17 @@
   },
   { 
     "id": 2, 
-    "title": "bricknbruise official instagram", 
-    "category": "Traditional Art", 
-    "description": "A curated instagram page featuring my journey in the creative via the traditional art.",
+    "title": "bricknbruise official github", 
+    "category": "Codes & More", 
+    "description": "My first and only official github profile.",
     "link": "https://www.instagram.com/bricknbruise" 
   },
   { 
     "id": 3, 
-    "title": "More Coding Projects?", 
-    "category": "COMING SOON", 
-    "description": "Willing to learn more, stay tuned for more projects soon!",
-    "link": "#" 
+    "title": "bricknbruise official instagram", 
+    "category": "Traditional Art", 
+    "description": "A curated instagram page featuring my journey in the creative via the traditional art.",
+    "link": "https://github.com/unforgettabri" 
   },
   {
     "type": "about",

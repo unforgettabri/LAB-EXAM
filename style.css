@@ -146,7 +146,7 @@ header {
     text-transform: lowercase;
     line-height: 0.95;
     letter-spacing: -2px;
-    font-weight: 900;
+    font-weight: 600;
     margin-bottom: 15px;
 }
 
@@ -259,11 +259,6 @@ header {
     text-align: center;
 }
 
-/* ==========================================
-   --- ADAPTIVE RESPONSIVE BEHAVIOR ---
-   ========================================== */
-
-/* 1. ULTRA-WIDE DESKTOP ONLY (Cards float safely over the background image) */
 @media (min-width: 1571px) {
     .projects-floating-wrapper {
         position: absolute;
@@ -280,7 +275,6 @@ header {
     }
 }
 
-/* 2. LAPTOPS, TABLETS & MOBILE (Drops cleanly into natural stacked flow) */
 @media (max-width: 1570px) {
     .hero {
         position: relative;
@@ -288,10 +282,9 @@ header {
         height: auto;
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center children elements perfectly */
+        align-items: center; 
     }
 
-    /* Pulls main hero wrapper out of absolute placement to stack naturally */
     .hero-content {
         position: relative;
         width: 94vw; /* Matches the width of the project wrapper below */
@@ -405,7 +398,7 @@ header {
     }
 }
 
-/* ADDED: ABOUT ME SECTION STYLING */
+/* --- ABOUT ME SECTION STYLING --- */
 .about-section {
     width: 100%;
     display: flex;
@@ -456,12 +449,24 @@ header {
 }
 
 .center-accent {
-    margin: 0 auto 40px auto;
+    margin: 0 auto 30px auto;
 }
 
+/* Beautiful dynamic introduction biography typography */
+.about-bio {
+    font-size: 1.15rem;
+    color: var(--contents-color);
+    text-align: center;
+    max-width: 800px;
+    line-height: 1.6;
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+/* Elegant 4-Column Responsive Layout Grid */
 .about-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 40px;
     width: 100%;
 }
@@ -506,10 +511,15 @@ header {
     margin-bottom: 12px;
 }
 
+/* Responsive adjusters for the about grid */
 @media (max-width: 1200px) {
     .about-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
+    }
+    .about-bio {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
     }
 }
 
@@ -520,5 +530,8 @@ header {
     .about-grid {
         grid-template-columns: 1fr;
         gap: 25px;
+    }
+    .about-bio {
+        font-size: 1rem;
     }
 }

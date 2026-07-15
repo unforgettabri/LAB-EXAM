@@ -80,8 +80,11 @@
             mobileMenu.classList.toggle('active');
         });
 
+        /// Dynamic Portfolio Rendering function
         const renderPortfolio = (data) => {
+            // Find the "about" data entry
             const aboutData = data.find(item => item.type === 'about');
+            // Filter out the "about" object so only project cards go into your main work grid
             const projects = data.filter(item => item.type !== 'about');
 
             // Render the About Card
@@ -89,10 +92,20 @@
             if (aboutContainer && aboutData) {
                 aboutContainer.innerHTML = `
                     <div class="about-card">
+                        <span class="about-tag">Curriculum Vitae</span>
                         <h2 class="about-title">About Me</h2>
                         <div class="accent-line center-accent"></div>
 
+                        ${aboutData.bio ? `<p class="about-bio">${aboutData.bio.join('')}</p>` : ''}
+
                         <div class="about-grid">
+                            <div class="about-col">
+                                <h3>Interests & Hobbies</h3>
+                                <ul>
+                                    ${aboutData["interest & hobbies"] ? aboutData["interest & hobbies"].map(hobby => `<li>${hobby}</li>`).join('') : ''}
+                                </ul>
+                            </div>
+
                             <div class="about-col">
                                 <h3>Education</h3>
                                 ${aboutData.education.map(edu => `
@@ -122,6 +135,7 @@
                 `;
             }
 
+            // Render Projects Grid
             const container = document.getElementById('portfolio-grid');
             if (!container) return;
 

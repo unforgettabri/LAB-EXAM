@@ -22,6 +22,12 @@
   },
   {
     "type": "about",
+    "bio": ["I am an IT student with a passion for web design, digital creativity, and user experience. I enjoy transforming ideas into meaningful projects that combine functionality with aesthetic design while continuously learning and improving my technical skills."],
+    "interest & hobbies": [
+      "Traditional Art",
+      "Listening to Music",
+      "Watching Films"
+    ],
     "education": [
       { "level": "Tertiary", "details": "Lorma Colleges | 2025 - Present" },
       { "level": "Secondary", "details": "Regional Science High School for Region 1 (JHS) & DFLOMNHS (SHS)" },

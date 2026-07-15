@@ -1,0 +1,23 @@
+[
+  { 
+    "id": 1, 
+    "title": "Project Alpha", 
+    "category": "Development", 
+    "description": "An exploration into minimal user interfaces and responsive web architectures.",
+    "link": "#" 
+  },
+  { 
+    "id": 2, 
+    "title": "Visual Identity", 
+    "category": "Design", 
+    "description": "Brand direction and assets built for modern digital platforms.",
+    "link": "#" 
+  },
+  { 
+    "id": 3, 
+    "title": "Hardware Archive", 
+    "category": "Photography", 
+    "description": "A curated photo series detailing legacy tech elements and cable layouts.",
+    "link": "#" 
+  }
+]

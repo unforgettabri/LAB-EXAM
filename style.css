@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #ebebeb;
+    --logo-color: #B81D33;
+    --head-bg-color: rgba(235, 235, 235, 0.75);
+    --contents-color: #111;
+
+    --radius: 12px;
+
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: var(--contents-color);
+}
+
+/* --- FIXED HEADER --- */
+header, .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(235, 235, 235, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 78px;
+    padding: 0 40px;
+    width: 100%;
+}
+
+.logo {
+    font-family: "Bodoni Moda SC", serif;
+    color: var(--logo-color);
+    font-weight: 800;
+    font-style: normal;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.hamburger, .mobile-menu {
+    display: none;
+}
+
+/* --- THE HERO (EDITORIAL CANVAS WITH BG IMAGE) --- */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Force section to take up full screen height */
+    padding: 120px 40px 60px 40px; /* Extra top padding to clear fixed header */
+    
+    /* Pulls your high-contrast hardware background image */
+    background-image: url('hero-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    
+    display: flex;
+    align-items: flex-end; /* Sits content at the bottom where the white space is */
+    justify-content: center;
+}
+
+/* Container keeping content structured inside the image */
+.hero-overlay-content {
+    width: 100%;
+    max-width: 1300px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    z-index: 2;
+}
+
+/* --- NO CARDS / MAGAZINE TYPOGRAPHY --- */
+.headline-group {
+    max-width: 800px;
+    background: transparent;
+}
+
+.hero-title {
+    font-family: "Bodoni Moda SC", serif;
+    font-size: clamp(3rem, 7vw, 5.5rem); /* Dynamically scales title so it fits mobile */
+    color: var(--logo-color);
+    text-transform: lowercase;
+    line-height: 0.9;
+    letter-spacing: -3px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--contents-color);
+    font-weight: 500;
+    max-width: 500px;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+
+/* --- DYNAMIC COLUMN WORK GRID --- */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    width: 100%;
+    border-top: 2px solid var(--contents-color);
+    padding-top: 30px;
+}
+
+.work-card {
+    background: transparent;
+    transition: opacity 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.work-card:hover {
+    opacity: 0.75;
+}
+
+.work-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--logo-color);
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.work-title {
+    font-family: "Bodoni Moda SC", serif;
+    font-size: 1.6rem;
+    color: var(--contents-color);
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.work-desc {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.work-arrow {
+    font-size: 1.5rem;
+    color: var(--logo-color);
+    align-self: flex-start;
+    transition: transform 0.2s ease;
+}
+
+.work-card:hover .work-arrow {
+    transform: translateX(8px);
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 768px) {
+    .nav-inner {
+        padding: 0 20px;
+        height: 60px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 100%;
+        height: 1.5px;
+        background-color: var(--contents-color);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-menu {
+        display: none; 
+        background: var(--bg-color);
+        padding: 10px 20px;
+        border-top: 1px solid #ccc;
+    }
+
+    .mobile-nav-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .mobile-menu.active {
+        display: block; 
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: auto;
+        z-index: 999;
+    }
+
+    /* Keep layout cohesive on smaller touch screens */
+    .hero {
+        padding: 100px 20px 40px 20px;
+    }
+
+    .hero-title {
+        letter-spacing: -2px;
+        margin-bottom: 10px;
+    }
+    
+    .work-grid {
+        gap: 30px;
+    }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bricknbruise | portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Oi&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="header">
+        <div class="container nav-inner">
+            <a href="#" class="logo">bricknbruise</a>
+
+            <ul class="nav-links">
+                <li><a href="#">Social Media</a></li>
+                <li><a href="#">Email Me</a></li>
+            </ul>
+
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div class="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="#">Social Media</a></li>
+                <li><a href="#">Email Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-overlay-content">
+                <div class="headline-group">
+                    <h1 class="hero-title">creative portfolio</h1>
+                    <p class="hero-subtitle">A digital archive of developments, designs, and hardware concepts.</p>
+                </div>
+                
+                <div id="portfolio-grid" class="work-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Function to render the work items
+        const renderPortfolio = (data) => {
+            const container = document.getElementById('portfolio-grid');
+            container.innerHTML = data.map(item => `
+                <a href="${item.link}" class="work-card">
+                    <div>
+                        <span class="work-category">${item.category}</span>
+                        <h3 class="work-title">${item.title}</h3>
+                        <p class="work-desc">${item.description}</p>
+                    </div>
+                    <span class="work-arrow">→</span>
+                </a>
+            `).join('');
+        };
+
+        // Fetch portfolio items directly from data.json
+        async function loadPortfolioData() {
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                renderPortfolio(data);
+            } catch (error) {
+                console.error("Could not fetch portfolio data: ", error);
+                document.getElementById('portfolio-grid').innerHTML = `<p style="color: var(--logo-color); padding: 20px 0;">Failed to load portfolio items.</p>`;
+            }
+        }
+
+        // Initialize on load
+        loadPortfolioData();
+    </script>
+</body>
+</html>

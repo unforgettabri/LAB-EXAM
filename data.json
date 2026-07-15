@@ -19,5 +19,27 @@
     "category": "COMING SOON", 
     "description": "Willing to learn more, stay tuned for more projects soon!",
     "link": "#" 
+  },
+  {
+    "type": "about",
+    "education": [
+      { "level": "Tertiary", "details": "Lorma Colleges | 2025 - Present" },
+      { "level": "Secondary", "details": "Regional Science High School for Region 1 (JHS) & DFLOMNHS (SHS)" },
+      { "level": "Primary", "details": "Bangar Central School" }
+    ],
+    "awards": [
+      "With High Honors - SHS",
+      "Fun Fiesta 2023 (11th National Performing Arts Festival) Likhang Pinta",
+      "Fun Fiesta 2024 (12th National Performing Arts Festival) Mixed Media",
+      "Academic Excellence Award (2025)"
+    ],
+    "seminars": [
+      "Ctrl+Talk, Layag - La Union Chapter Webinar"
+    ],
+    "research": [
+      "Feasibility of Alugbati (Basella Alba L.) Seeds as an Alternative Stamp Pad Ink (July 2023)",
+      "Digital and Traditional Art: An Analysis of Teachers and Students Perception in Bangar, La Union (March 2024)",
+      "Factors Affecting the Decline of Enrollment in the Arts Production Strand in DFLOMNHS (September 2024)"
+    ]
   }
 ]

@@ -21,8 +21,9 @@
             <a href="#" class="logo">bricknbruise</a>
 
             <ul class="nav-links">
-                <li><a href="#">Social Media</a></li>
-                <li><a href="#">Email Me</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="https://www.instagram.com/bricknbruise" target="_blank">Social Media</a></li>
+                <li><a href="mailto:brianna.bustamante@lorma.edu">Email Me</a></li>
             </ul>
 
             <button class="hamburger" aria-label="Toggle menu">
@@ -34,8 +35,9 @@
 
         <div class="mobile-menu">
             <ul class="mobile-nav-links">
-                <li><a href="#">Social Media</a></li>
-                <li><a href="#">Email Me</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="https://www.instagram.com/bricknbruise" target="_blank">Social Media</a></li>
+                <li><a href="mailto:brianna.bustamante@lorma.edu">Email Me</a></li>
             </ul>
         </div>
     </header>
@@ -46,16 +48,13 @@
 
             <div class="hero-content">
                 <div class="headline-group">
-                    <h1 class="hero-title">creative portfolio</h1>
+                    <h1 class="hero-title">bricknbruise creatives</h1>
                     <div class="accent-line"></div>
                     <p class="hero-subtitle">
-                        An expansive digital archive documenting the intersection of custom hardware interfaces,
-                        software engineering initiatives, and creative web layouts.
+                        Aspiring Developer • Designer • Artist
                     </p>
                     <p class="hero-description">
-                        Through experimental hardware setups and precise design execution, this space serves as an
-                        evolving showcase of classic aesthetics fused with contemporary development workflows. Explore
-                        the architectural layout of custom cables, modern visual assets, and tactile tech design.
+                        I design and develop digital solutions that combine creativity, functionality, and user-centered thinking. With a passion for technology and continuous learning, I transform ideas into meaningful experiences through clean design and efficient code.
                     </p>
                 </div>
             </div>
@@ -65,8 +64,12 @@
                 <div id="portfolio-grid" class="work-grid"></div>
             </div>
         </section>
+
+        <section id="about" class="about-section">
+            <div id="about-card-container"></div>
+        </section>
     </main>
-    
+
     <script>
         // Mobile menu toggle
         const hamburger = document.querySelector('.hamburger');
@@ -77,13 +80,52 @@
             mobileMenu.classList.toggle('active');
         });
 
-        /// Dynamic Portfolio Rendering function
         const renderPortfolio = (data) => {
+            const aboutData = data.find(item => item.type === 'about');
+            const projects = data.filter(item => item.type !== 'about');
+
+            // Render the About Card
+            const aboutContainer = document.getElementById('about-card-container');
+            if (aboutContainer && aboutData) {
+                aboutContainer.innerHTML = `
+                    <div class="about-card">
+                        <h2 class="about-title">About Me</h2>
+                        <div class="accent-line center-accent"></div>
+
+                        <div class="about-grid">
+                            <div class="about-col">
+                                <h3>Education</h3>
+                                ${aboutData.education.map(edu => `
+                                    <div class="edu-item">
+                                        <p class="edu-level">${edu.level}</p>
+                                        <p class="edu-details">${edu.details}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <div class="about-col">
+                                <h3>Awards & Citations</h3>
+                                <ul>
+                                    ${aboutData.awards.map(award => `<li>${award}</li>`).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="about-col">
+                                <h3>Research & Seminars</h3>
+                                <ul>
+                                    ${aboutData.research.map(res => `<li><em>${res}</em></li>`).join('')}
+                                    ${aboutData.seminars.map(sem => `<li>Seminar: ${sem}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
             const container = document.getElementById('portfolio-grid');
             if (!container) return;
 
-            /* --- CHANGE THIS SECTION IN YOUR HTML SCRIPT BLOCK --- */
-            container.innerHTML = data.map(item => `
+            container.innerHTML = projects.map(item => `
                 <a href="${item.link || '#'}" class="work-card" target="_blank" rel="noopener noreferrer">
                     <div class="card-content">
                         <span class="work-category">${item.category}</span>
@@ -93,7 +135,6 @@
                     <span class="work-arrow">→</span>
                 </a>
             `).join('');
-
         };
 
         // Fetch portfolio data from separate data.json file

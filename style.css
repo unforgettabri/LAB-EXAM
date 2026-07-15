@@ -6,7 +6,7 @@
 
 :root {
     --bg-color: #f0f1f3;
-    --logo-color: #B81D33;
+    --logo-color: #c92f46;
     --head-bg-color: rgba(240, 241, 243, 0.75);
     --contents-color: #111111;
     --muted-color: #555555;
@@ -16,7 +16,7 @@
 
     /* --- UNIFIED CLASS-GLASS VARIABLE SYSTEM --- */
     --card-bg: rgba(255, 255, 255, 0.45);
-    --card-hover-bg: rgba(255, 255, 255, 0.75);
+    --card-hover-bg: rgba(255, 255, 255, 0.692);
     --card-border: 1px solid rgba(255, 255, 255, 0.7);
     --card-shadow: 0 20px 45px rgba(0, 0, 0, 0.04);
     --card-hover-shadow: 0 35px 65px rgba(0, 0, 0, 0.08);
